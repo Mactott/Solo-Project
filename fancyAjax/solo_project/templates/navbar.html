@@ -1,0 +1,72 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="z-index: 91;">
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <a class="navbar-brand typeh" href="/">Fancy Project</a>
+            <div class="row change">
+                <div class="col">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="col text-center left">
+                    <a class="navbar-brand" href="/">Fancy Project</a>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                
+                {%if request.session.id%}
+                <li class="nav-item">
+                    <a class="nav-link active nav-link-custom" aria-current="page" style="display: flex; align-items: last baseline;"  id="newPostButton" onclick="newPostRequest()">
+                        <i class="navcon fa fa-plus" style="font-size:20px;color:white; margin-right: 7.5px;"></i>
+                        <h5 class="text-light  navtem">New post</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active nav-link-custom" aria-current="page" style="display: flex; align-items: last baseline;" id="myPosts" onclick="getMyPosts()">
+                        <i class="fa fa-user-circle navcon" style="font-size:20px;color:white; margin-right: 7.5px;"></i>
+                        <h5 class="text-light navtem">My Posts</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active nav-link-custom" aria-current="page" style="display: flex; align-items: last baseline;" href="/loggout">
+                        <i class="fa fa-sign-out navcon" style="font-size:20px;color:white; margin-right: 7.5px;"></i>
+                        <h5 class="text-light  navtem">Loggout</h5>
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link active nav-link-custom" aria-current="page" style="display: flex; align-items: last baseline;" id="logginButton" onclick="logginRequest()">
+                        <i class="fa fa-sign-in navcon" style="font-size:20px;color:white; margin-right: 7.5px;"></i>
+                        <h5 class="text-light  navtem">Loggin</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active nav-link-custom" aria-current="page" style="display: flex; align-items: last baseline;" id="addUserButton" onclick="addUserRequest()">
+                        <i class="fa fa-user-plus navcon" style="font-size:20px;color:white; margin-right: 7.5px;"></i>
+                        <h5 class="text-light  navtem">New User</h5>
+                    </a>
+                </li>
+                {%endif%}
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="modal-backdrop fade show" id="dark" style="z-index: 90; display: none;"></div>
+<div>
+    {% csrf_token %}
+</div>
+
+
+{%if request.session.id%}
+<script src="{% static 'navbarloggedin.js' %}"></script>
+{% else %}
+<script src="{% static 'navbar.js' %}"></script>
+{%endif%}

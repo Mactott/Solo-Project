@@ -1,0 +1,54 @@
+{% load static %}
+{% load humanize %}
+
+    {% if post %}
+    <div class="card" style="border: rgba(12, 12, 12, .03); background-color: transparent; margin: 0% 12.5% 5% 7.5%;">
+
+        <div class="container-fluid" style="display: flex; flex-direction: column; align-items: center;">
+            <h4 class="caption">
+                <div class="post">
+                    <div><i class="fa fa-user-circle" onclick="logUserId('{{post.user.id}}')"
+                            style="font-size:38px;color:black;margin-right: 5px;"></i></div>
+                    <h3 class="caption2">{{post.caption}}</h3>
+                </div>
+                <div>
+                    {% if post.edited == True %}
+                    <br>
+                    <h6 class="date-border">Updated {{post.updated_at|naturaltime}}</h6>
+                    <span class="badge bg-secondary" role="button">Edited</span>
+                    {% else %}
+                    <br>
+                    <h6 class="date-border">Posted {{post.created_at|naturaltime}}</h6>
+                    {% endif %}
+                    {% if request.session.id %}
+                    <span class="badge bg-secondary" onclick="commentRequest({{post.id}})" role="button">Comment</span>
+                    {% endif %}
+                    {% if post.user.id == request.session.id %}
+                    <span class="badge bg-secondary" role="button" onclick="editRequest({{post.id}})">Edit</span>
+                    <span class="badge bg-secondary" role="button" onclick="deleteRequest({{post.id}})">Delete</span>
+                    {% endif %}
+                </div>
+            </h4>
+            <div style="display: flex; flex-direction: column; align-items: baseline;">
+                <p style="display: flex; justify-content: center;">
+                    {% if post.text != "" %}
+                <h5 class="text">
+                    {{post.user.username}}: {{post.text}}
+                </h5>
+                {% endif %}
+                </p>
+                <p>
+                    {% if comments %}
+                    {% for comment in comments %}
+                <h5 class="text">
+                    {{comment.user.username}}:
+                    {{comment.comment}}
+                </h5>
+                <h6>{{comment.created_at|naturaltime}}</h6>
+                    {% endfor %}
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}

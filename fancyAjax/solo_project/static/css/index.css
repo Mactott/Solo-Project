@@ -1,0 +1,58 @@
+.date-border {
+    border-bottom: solid black;
+}
+
+.text {
+    word-wrap: break-word;
+    margin: 0% 5% 0% 5%;
+}
+
+#pages {
+    padding-top: 70px;
+}
+
+#myPosts {
+    cursor: pointer;
+}
+
+#newPostButton {
+    cursor: pointer;
+}
+
+.circle {
+    height: 50px;
+    width: 50px;
+    border: solid black 7.5px;
+    border-radius: 50px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.post {
+    display: flex;
+    align-items: end;
+}
+
+.caption{
+    width: fit-content;
+    word-wrap: break-word; 
+    padding-top: 15px;
+    cursor: pointer;
+}
+
+.caption2 {
+    width: fit-content;
+    word-wrap: break-word;
+    padding-top: 15px;
+}
+
+.pagination {
+    border-bottom: none;
+    display: flex;
+    justify-content: center;
+}
+
+.page-link {
+    background-color: rgb(var(--bs-body-color-rgb));
+    color: rgb(var(--bs-body-bg-rgb));
+}

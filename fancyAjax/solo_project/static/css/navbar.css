@@ -1,0 +1,38 @@
+@media (max-width: 991px) {
+    .navcon {
+        display:block !important;
+    }
+}
+@media (min-width: 992px) {
+    .navcon {
+        display:none !important; 
+    }
+}
+
+@media (max-width: 991px) {
+    .left {
+        display: block !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .left {
+        display: none !important;
+    }
+}
+
+.navtem {
+    white-space: nowrap;
+}
+
+@media (max-width: 991px) {
+    .typeh {
+        display: none !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .typeh {
+        display: block !important;
+    }
+}

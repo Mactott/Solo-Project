@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content%}
+{% load static %}
+{% load humanize %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<div id="pages">
+    {% if posts %}
+    {% for post in posts %}
+    <div class="card" style="border: rgba(12, 12, 12, .03); background-color: transparent; margin: 2.5% 12.5% 5% 7.5%;">
+        <div class="container-fluid" style="display: flex; justify-content: center;">
+            <h4 class="caption" style="width: 500px;">
+                <div class="post">
+                    <div><i class="fa fa-user-circle" onclick="logUserId('{{post.user.id}}')"
+                            style="font-size:38px;color:black;margin-right: 5px;"></i></div>
+                    <h4 class="caption" onclick="viewPost({{post.id}})">{{post.caption}}</h4>
+                </div>
+                <div>
+                    {% if post.edited == True %}
+                    <br>
+                    <h6 class="date-border">Updated {{post.updated_at|naturaltime}}</h6>
+                    <span class="badge bg-secondary" role="button">Edited</span>
+                    {% else %}
+                    <br>
+                    <h6 class="date-border">Posted {{post.created_at|naturaltime}}</h6>
+                    {% endif %}
+                    {% if post.user.id == request.session.id %}
+                    <span class="badge bg-secondary" role="button" onclick="editRequest({{post.id}})">Edit</span>
+                    <span class="badge bg-secondary" role="button" onclick="deleteRequest({{post.id}})">Delete</span>
+                    {% endif %}
+                </div>
+            </h4>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <h3>There are no posts</h3>
+    </div>
+    {% endif %}
+    <nav>
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" onclick="viewPage({{0}})">First</a></li>
+            {% for num in split %}
+            <li class="page-item {% if page == num %} active {% endif %}" onclick="viewPage({{num}})"><a
+                    class="page-link">{{num|add:1}}</a></li>
+            {% endfor %}
+            <li class="page-item"><a class="page-link" onclick="viewPage({{last|add:-1}})">Last</a></li>
+        </ul>
+    </nav>
+</div>
+<script src="{% static 'index.js' %}"></script>
+<script src="{% static 'post.js' %}"></script>
+{% endblock %}

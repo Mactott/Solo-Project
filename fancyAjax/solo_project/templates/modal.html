@@ -1,0 +1,44 @@
+<div class="modal fade dark-themed-modal" id="{{modal}}Modal" tabindex="-1" role="dialog"
+    aria-labelledby="{{modal}}ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header" style="display: flex; justify-content: center; border-bottom: none;">
+                <h5 class="modal-title" id="{{modal}}ModalLabel">{{button}}</h5>
+            </div>
+            <div class="modal-body">
+                <form id="{{form}}Form" style="display: flex; flex-direction: column; align-items: center;">
+                    {% if form == "loggin" %}
+                    <label>Email</label> <input name="email" class="form-control bg-dark text-white" />
+                    <label>Password</label> <input type="password" name="password"
+                        class="form-control bg-dark text-white" />
+                    {% endif %}
+                    {% if form == "addUser" %}
+                    <div></div>
+                    <label>Username</label> <input name="username" class="form-control bg-dark text-white" />
+                    <label>Email</label> <input name="email" class="form-control bg-dark text-white" />
+                    <label>Password</label> <input type="password" name="password"
+                        class="form-control bg-dark text-white" />
+                    <label>Confirm</label> <input type="password" name="confirm"
+                        class="form-control bg-dark text-white" />
+                    {% endif %}
+                    {% if form == "comment" %}
+                        <div></div>
+                        <label>Comment</label> <input name="comment" class="form-control bg-dark text-white" />
+                    {% endif %}
+                    {% if form == "newPost" and blank == True %}
+                    <div></div>
+                    <label>Caption</label> <input name="caption" class="form-control bg-dark text-white"/>
+                    <label>Text</label> <input name="text" class="form-control bg-dark text-white"/>
+                    {% endif %}
+                    {% if form == "newPost" and blank == False %}
+                    <label>Caption</label> <input name="caption" value="{{post.caption}}" class="form-control bg-dark text-white"/>
+                    <label>Text</label> <input name="text" value="{{post.text}}" class="form-control bg-dark text-white"/>
+                    {% endif %}
+                </form>
+            </div>
+            <div class="modal-footer" style="display: flex; justify-content: space-around; border-top: none;">
+                <button type="submit" form="{{form}}Form" class="btn btn-light">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

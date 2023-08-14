@@ -1,0 +1,14 @@
+<div class="container-fluid" id="page1" style="padding-top: 12%;">
+    {% for post in posts %}
+
+    <div class="container-fluid" style="margin-left: 2.5%;  margin-top: 2.5ch;">
+        <h4 style="word-wrap: break-word;">{{post.caption}} {% if post.user.id == request.session.id %} <span
+                class="badge bg-secondary" role="button" onclick="editRequest({{post.id}})">Edit</span> {% endif %}
+            {% if post.edited == True %} <span class="badge bg-secondary" role="button">Edited</span> {% endif %} </h4>
+        <p style="max-width: 90%;">
+        <h6 style="word-wrap: break-word; padding-right: 2.5ch; border-bottom: solid black;">{{post.text}}</h6>
+        </p>
+    </div>
+
+    {% endfor %}
+</div>

@@ -1,0 +1,13 @@
+
+
+
+.spin{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200vw;
+    height: 300vh;
+    transform: translate(-50%, -50%);
+    background: repeating-radial-gradient(#89492b46 0%, #7e2c5d4b 100%);
+    pointer-events: none;
+}
